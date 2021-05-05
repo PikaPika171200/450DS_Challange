@@ -1,0 +1,74 @@
+//----------   Using C
+
+    //---------- Method 1
+    
+        #include<stdio.h>
+        #include<limits.h>
+        #include<stdlib.h>
+        int main(){
+            int n;
+            scanf("%d",&n);
+            int *arr=(int *)malloc(n*sizeof(int));
+            int i,min=INT_MAX,max=INT_MIN;
+            for(i=0;i<n;i++){
+                scanf("%d",&arr[i]);
+                if(arr[i]>max)max=arr[i];
+                if(arr[i]<min)min=arr[i];
+            }
+        }
+
+
+
+    //---------- Method 2
+    
+        #include<stdio.h>
+        #include<stdlib.h>
+        struct MM{
+            int min;
+            int max;
+        };
+        struct MM find_minmax(int array[],int n){
+            struct MM minmax;
+            int i;
+            if(n%2==0){
+                if(array[0]>array[1]){
+                    minmax.min=array[1];
+                    minmax.max=array[0];
+                }
+                else{
+                    minmax.min=array[0];
+                    minmax.max=array[1];
+                }
+                i=2;
+            }
+            else{
+                minmax.min=array[0];
+                minmax.max=array[0];
+                i=1;
+            }
+            while(i<n-1){
+                if(array[i]>array[i+1]){
+                    if(array[i]>minmax.max)
+                        minmax.max=array[i];
+                    if(array[i+1]<minmax.min)
+                        minmax.min=array[i+1];
+                }
+                else{
+                    if(array[i+1]>minmax.max)
+                        minmax.max=array[i+1];
+                    if(array[i]<minmax.min)
+                        minmax.min=array[i];
+                }
+                i+=2;
+            }
+            return minmax;
+        }
+        int main(){
+            int n,i;
+            scanf("%d",&n);
+            int *array=(int *)malloc(n*sizeof(int));
+            for(i=0;i<n;i++)
+                scanf("%d",&array[i]);
+            struct MM minmax=find_minmax(array,n);
+            printf("Min = %d\nMax = %d",minmax.min,minmax.max);
+        }
