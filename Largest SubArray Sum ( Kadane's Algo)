@@ -1,0 +1,20 @@
+//---------- Using C
+
+
+      #include<stdio.h>
+      #include<stdlib.h>
+      #include<limits.h>
+      int main(){
+          int n,i;
+          scanf("%d",&n);
+          int *arr=(int *)malloc(n*sizeof(int));
+          for(i=0;i<n;i++) scanf("%d",&arr[i]);
+          int max_Index_Sum = 0;
+          int max_Sum = INT_MIN;
+          for(i=0;i<n;i++){
+              max_Index_Sum += arr[i];
+              if(max_Sum < max_Index_Sum) max_Sum = max_Index_Sum;
+              if(max_Index_Sum < 0) max_Index_Sum = 0;
+          }
+          printf("%d ",max_Sum);
+      }
