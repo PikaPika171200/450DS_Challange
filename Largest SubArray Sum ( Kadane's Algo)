@@ -9,12 +9,12 @@
           scanf("%d",&n);
           int *arr=(int *)malloc(n*sizeof(int));
           for(i=0;i<n;i++) scanf("%d",&arr[i]);
-          int max_Index_Sum = 0;
-          int max_Sum = INT_MIN;
+          int TempSum = 0;
+          int MaxSum = INT_MIN;
           for(i=0;i<n;i++){
-              max_Index_Sum += arr[i];
-              if(max_Sum < max_Index_Sum) max_Sum = max_Index_Sum;
-              if(max_Index_Sum < 0) max_Index_Sum = 0;
+              TempSum += arr[i];
+              if(MaxSum < TempSum) MaxSum = TempSum;
+              if(TempSum < 0) TempSum = 0;
           }
-          printf("%d ",max_Sum);
+          printf("%d ",MaxSum);
       }
